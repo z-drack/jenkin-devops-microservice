@@ -1,8 +1,10 @@
 pipeline {
-	agent any
+	//agent any
+	agent { docker {image "maven:3.6.3"}}
 	stages{
 		stage("Build"){
 			steps{
+				sh "mvn --version"
 				echo "Build"
 			}
 		}
@@ -18,7 +20,7 @@ pipeline {
 		}
 	} 
 	post{
-		
+
 		always {
 			echo "I'm awesome, I run always"
 
@@ -30,6 +32,7 @@ pipeline {
 		failure{
 			echo "I run when you fail"
 		}
+		//changed: Quando o estado do pipeline muda(funciona -> n funciona; n funciona -> funciona)
 
 	}
 }
