@@ -29,17 +29,17 @@ pipeline {
 		}
 		stage("Test"){
 			steps{
-				echo "mvn test"
+				sh "mvn test"
 			}
 		}
 		stage("Integration Test"){
 			steps{
-				echo "mvn failsafe:integration-test failsafe:verify"	
+				sh "mvn failsafe:integration-test failsafe:verify"	
 			}
 		}
 		stage("Package"){
 			steps{
-				echo "mvn package -DskipTest"	
+				sh "mvn package -DskipTest"	
 			}
 		}
 		stage("Build Docker Image"){
